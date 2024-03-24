@@ -1,0 +1,83 @@
+/*
+VARIÁVEIS:
+
+    int quant_alunos;               ->          Quantidade de alunos;
+    int i;                          ->          Contador;
+    char nome_alunos[10][20];       ->          Matriz para o nome dos alunos (5 "linhas" de palavras para nome de 20 caracteres);
+    float nota1[10];                ->          Vetor para armazenar 10 notas da Prova 1
+    float nota2[10];                ->          Vetor para armazenar 10 notas da Prova 2
+    float media[10];                ->          Vetor para armazenar 10 médias de notas.
+
+OBSERVAÇÕES:
+
+    - String = Vetor de caracteres.
+
+    - Em algumas partes aparecerá (i+1) isso porque o contador começa em 0 e queremos que mostre 1, por exemplo: Ao inves de
+    "Aluno 0" aparecerá "Aluno 1";
+
+    - Perceba que pelo fato de limitarmos a quantidade de notas e nomes que podemos armazenar, qualquer quantidade de alunos
+    maior que seja maior que o limite de notas e nomes causará erro. Para isso podemos aumentar o limite, mas como o intuito é
+    para aprender os conceitos podemos manter um número baixo de notas e nomes :)
+
+     -strcpy: copia uma string
+	
+      (vetor e constante)
+
+COMANDOS:
+
+    system("cls") -> Limpa a tela (pode não funcionar em alguns sistemas operacionais).
+
+    puts("") -> Mesma coisa que o printf(""), porém não podemos referenciar variáveis dentro desse comando. Entretanto ele
+    consome menos processamento que o printf("") então sempre que possível utilize o puts("").
+
+    fgets(vetor[x],[y],stdin) -> Recebe os caracteres para armazenar na String.
+*/
+
+#include <stdio.h>
+#include <string.h>
+
+int quant_alunos;
+int i;
+char nome_alunos[10][20];
+float nota1[10];
+float nota2[10];
+float media[10];
+
+int main()
+{
+    // Requerindo as informações:
+    puts("\n Informe a quantidade de alunos: ");
+    scanf("%d", &quant_alunos);
+    fflush(stdin);
+
+    for(i = 0; i < quant_alunos; i++)
+    {
+        system("cls");
+
+        printf("\n Informe o nome do aluno %d: ", i+1);
+        fgets(nome_alunos[i], 20, stdin);
+        fflush(stdin);
+
+        printf("\n Informe a nota 1 do aluno %d: ", i+1);
+        scanf("%f", &nota1[i]);
+        fflush(stdin);
+
+        printf("\n Informe a nota 2 do aluno %d: ", i+1);
+        scanf("%f", &nota2[i]);
+        fflush(stdin);
+
+        media[i] = (nota1[i] + nota2[i]) / 2;
+    }
+
+    //Exibindo os valores:
+    for(i = 0; i < quant_alunos; i++)
+    {
+        puts("\n --------------------------");
+        printf("Aluno %d: %s", i+1, nome_alunos[i]);
+        printf("\n N1: %.2f", nota1[i]);
+        printf("\n N2: %.2f", nota2[i]);
+        printf("\n Media: %.2f", media[i]);
+    }
+
+    return 0;
+}
